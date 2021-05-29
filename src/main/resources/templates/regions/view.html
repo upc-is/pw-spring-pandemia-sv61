@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <title>Region item</title>
+  </head>
+  <body>
+    <h1>Region Item</h1>
+	
+	<p>Id: <span th:text="${region.id}"></span>, 
+		Name: <span th:text="${region.name}"></span></p>
+		
+	<a th:href="@{'/regions'}" class="btn btn-primary"><i class="fas fa-plus-square"></i> Return</a>
+
+    <script th:src="@{js/bootstrap.bundle.min.js}" ></script>
+  </body>
+</html>
