@@ -71,7 +71,7 @@ public class RegionController {
 		try {
 			System.out.println(region.getId());
 			System.out.println(region.getName());
-			//regionService.update(region);
+			regionService.update(region);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
@@ -90,7 +90,7 @@ public class RegionController {
 		try {
 			System.out.println(region.getId());
 			System.out.println(region.getName());
-			//regionService.create(region);
+			regionService.create(region);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
