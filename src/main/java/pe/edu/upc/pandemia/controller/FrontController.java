@@ -9,7 +9,7 @@ import pe.edu.upc.pandemia.model.entity.Region;
 import pe.edu.upc.pandemia.service.RegionService;
 
 @Controller
-@RequestMapping("/saludo")
+@RequestMapping("/")
 public class FrontController {
 	
 	@Autowired
@@ -26,6 +26,10 @@ public class FrontController {
 			e.printStackTrace();
 		}
 		return "pagina";
+	}
+	@GetMapping("layout")
+	public String layout() {
+		return "layout/layout";
 	}
 	
 }

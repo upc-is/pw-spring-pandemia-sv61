@@ -1,18 +1,12 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head th:replace="layout/layout :: head(~{::title})">
+	<title>HR - Regions </title>
+</head>
+ <body>
+ 	<header th:replace="layout/layout :: header"></header>
+   <h1>Region List</h1>
 
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/fontawesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/solid.min.css}" rel="stylesheet">
-
-    <title>Region list</title>
-  </head>
-  <body>
-    <h1>Region List</h1>
-	
 	<div class="card text-center" style="width: 40rem;">
 	  <div class="card-header">
 	    Region management
@@ -34,7 +28,7 @@
 		      <td th:text="${region.name}">Mark</td>
 		      <td><a th:href="@{'/regions/' + ${region.id}}" class="btn btn-info"><i class="fas fa-eye"></i></a></td>
 		      <td><a th:href="@{'/regions/' + ${region.id} + '/edit'}" class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
-		      <td><a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+		      <td><a th:href="@{'/regions/' + ${region.id} + '/del'}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
 		    </tr>
 		  </tbody>
 		</table>
@@ -44,7 +38,8 @@
 	    <a th:href="@{'/regions/new'}" class="btn btn-primary"><i class="fas fa-plus-square"></i> New Region</a>
 	  </div>
 	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
 
-    <script th:src="@{js/bootstrap.bundle.min.js}" ></script>
-  </body>
+   <script th:src="@{js/bootstrap.bundle.min.js}" ></script>
+ </body>
 </html>

@@ -69,8 +69,6 @@ public class RegionController {
 	@PostMapping("saveedit")	// POST: /region/saveedit
 	public String saveEdit(Model model, @ModelAttribute("regionEdit") Region region) {		
 		try {
-			System.out.println(region.getId());
-			System.out.println(region.getName());
 			regionService.update(region);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,8 +86,6 @@ public class RegionController {
 	@PostMapping("savenew")	// POST: /region/savenew
 	public String saveNew(Model model, @ModelAttribute("regionNew") Region region) {		
 		try {
-			System.out.println(region.getId());
-			System.out.println(region.getName());
 			regionService.create(region);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,6 +93,20 @@ public class RegionController {
 		}		
 		return "redirect:/regions";
 	}	
+	//---------- Delete---------------
+	@GetMapping("{id}/del")
+	public String delRegion(@PathVariable("id") Integer id ) {
+		try {
+			Optional<Region> optional = regionService.findById(id);
+			if (optional.isPresent()) {
+				regionService.deleteById(id);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+		}
+		return "redirect:/regions";
+	}
 	
 }
 
