@@ -1,15 +1,23 @@
 package pe.edu.upc.pandemia.model.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", 
+		indexes = { @Index(columnList = "username", name = "user_index_username")})
 public class User {
 	// EmbeddedId primary key
 	@Id
@@ -24,14 +32,42 @@ public class User {
 	@Column(name = "enable")
 	private boolean enable;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
 	@JoinColumn(name = "id")
 	private Employee employee;
 	
-	// -- Constructor, Getter y Setter
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Authority> authorities;
+	
 	public User() {
+		this.enable = true;
+		this.authorities = new ArrayList<>();
+	}
+	public User( String username, String password ) {
+		this.username = username;
+		this.password = password;
+		this.enable = true;
+		this.authorities = new ArrayList<>();
+	}
+	// Construct that receive the employee
+	public User( String username, String password, Employee employee ) {
+		this.id = employee.getId();
+		this.username = username;
+		this.password = password;
+		this.enable = true;
+		this.employee = employee;		
+		this.authorities = new ArrayList<>();
+		employee.setUser(this);
+	}
+	
+	// Add ROLE or ACCESS to user
+	public void addAuthority( String auth ) {
+		Authority authority = new Authority();
+		authority.setAuthority( auth ) ;
+		authority.setUser( this );
 		
+		this.authorities.add( authority );
 	}
 
 	public Integer getId() {
@@ -72,6 +108,12 @@ public class User {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	public List<Authority> getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
 	}
 	
 }
