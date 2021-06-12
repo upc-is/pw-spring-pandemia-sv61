@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head(~{::title})">
+	<title>HR - Info </title>
+</head>
+<body>
+ <header th:replace="layout/layout :: header"></header>
+ <main>
+ 
+ <section style="margin: 20px;">
+ 	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Home</a></li>
+	    <li class="breadcrumb-item"><a href="#">Information</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Employees</li>
+	  </ol>
+	</nav>
+ </section>
+ <section style="padding: 30px;">
+ 
+ 	<div class="card mb-5" style="max-width: 740px;">
+	  <div class="row g-0">
+	    <div class="col-md-5">
+	      <img th:src="@{/images/perfil.jpg}" alt="...">
+	    </div>
+	    <div class="col-md-7">
+	      <div class="card-body">
+	        <h5 class="card-title" th:text="${employee.firstName + ' ' + employee.lastName}">Card title</h5>
+	        <p class="card-text"><strong>Department:</strong> <span th:text="${employee.department.name}"></span>.</p>
+	        <p class="card-text"><strong> Job:</strong> <span th:text="${employee.job.title}"></span>.</p>
+	        <p class="card-text"><strong>Email:</strong> <span th:text="${employee.email}"></span></p>
+	        <p class="card-text"><strong>Phone number:</strong> <span th:text="${employee.phoneNumber}"></span></p>
+	        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+ 
+ </section>
+ 	
+ 
+ </main>   
+ <footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

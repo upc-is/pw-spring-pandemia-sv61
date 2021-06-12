@@ -59,8 +59,8 @@
 	        </li>
 	      </ul>
 	      
-	      <form class="d-flex" th:action="/searchregion" th:object="${regionSearch}" method="post">
-	        <input class="form-control me-2" type="search" placeholder="Search Region" aria-label="Search">
+	      <form class="d-flex" th:action="@{/search/employees}" th:object="${employeeSearch}" method="post">
+	        <input class="form-control me-2" type="search" th:field="*{lastName}" placeholder="Search Employees" aria-label="Search">
 	        <button class="btn btn-warning" type="submit"><i class="fas fa-search"></i></button>
 	      </form>
 	      	      
@@ -104,8 +104,7 @@
 	      </div>	      
 	    </div>
 	  </div>
+	  <script th:src="@{js/bootstrap.bundle.min.js}" ></script>
 	</footer>
-
-  <script th:src="@{js/bootstrap.bundle.min.js}" ></script>
 </body>
 </html>
