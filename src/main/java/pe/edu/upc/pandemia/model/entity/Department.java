@@ -27,8 +27,9 @@ public class Department {
 	
 	@Column(name = "department_name", length = 30)
 	private String name;
-	
-	@OneToOne(mappedBy = "departmentManager", fetch = FetchType.EAGER)
+
+	@OneToOne
+	@JoinColumn(name = "manager_id", nullable = true)
 	private Employee manager;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
