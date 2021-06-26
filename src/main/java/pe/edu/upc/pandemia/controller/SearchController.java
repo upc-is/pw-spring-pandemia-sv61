@@ -34,7 +34,7 @@ public class SearchController {
 		}
 		model.addAttribute("employees", employees);
 		model.addAttribute("employeeSearch", employeeSearch);
-		return "search/employees";
+		return "search/employees-search";
 	}
 	
 }

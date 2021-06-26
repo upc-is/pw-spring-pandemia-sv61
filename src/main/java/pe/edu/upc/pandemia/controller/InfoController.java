@@ -28,7 +28,7 @@ public class InfoController {
 			if(optional.isPresent()) {
 				model.addAttribute("employee", optional.get());
 				model.addAttribute("employeeSearch", employeeSearch);
-				return "info/employee";
+				return "info/employee-info";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

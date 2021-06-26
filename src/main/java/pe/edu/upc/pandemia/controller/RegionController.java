@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import pe.edu.upc.pandemia.model.entity.Employee;
 import pe.edu.upc.pandemia.model.entity.Region;
 import pe.edu.upc.pandemia.service.RegionService;
 
@@ -29,6 +30,8 @@ public class RegionController {
 		try {
 			List<Region> regions = regionService.getAll();
 			model.addAttribute("regions", regions);
+			Employee employeeSearch = new Employee();
+			model.addAttribute("employeeSearch", employeeSearch);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());

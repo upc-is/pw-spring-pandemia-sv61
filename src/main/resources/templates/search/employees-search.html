@@ -29,8 +29,8 @@
 		    	<strong>Department:</strong> <span th:text="${employee.department.name}"></span><br>
 		    	<strong> Job:</strong> <span th:text="${employee.job.title}"></span>
 		    </p>
-		    <a th:href="@{'/info/employee/' + ${employee.id}}" class="btn btn-warning">More Info</a>
-		    <a href="#" class="btn btn-success">Up Job</a>
+		    <a th:href="@{'/info/employee/' + ${employee.id}}" class="btn btn-warning">Info</a>
+		    <a th:href="@{'/human-resource/moveup/' + ${employee.id}}" class="btn btn-success">Move Up</a>
 		  </div>
 		</div>
  	  </div>

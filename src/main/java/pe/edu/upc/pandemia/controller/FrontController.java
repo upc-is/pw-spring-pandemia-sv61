@@ -41,4 +41,9 @@ public class FrontController {
 		return "layout/layout";
 	}
 	
+	@GetMapping("login")
+	public String login() {
+		return "login";
+	}
+	
 }

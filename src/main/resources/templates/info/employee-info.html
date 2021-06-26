@@ -26,11 +26,30 @@
 	    <div class="col-md-7">
 	      <div class="card-body">
 	        <h5 class="card-title" th:text="${employee.firstName + ' ' + employee.lastName}">Card title</h5>
-	        <p class="card-text"><strong>Department:</strong> <span th:text="${employee.department.name}"></span>.</p>
-	        <p class="card-text"><strong> Job:</strong> <span th:text="${employee.job.title}"></span>.</p>
-	        <p class="card-text"><strong>Email:</strong> <span th:text="${employee.email}"></span></p>
-	        <p class="card-text"><strong>Phone number:</strong> <span th:text="${employee.phoneNumber}"></span></p>
-	        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+	        <p class="card-text">
+	        	<strong>Job:</strong> <span th:text="${employee.job.title}"></span><br>
+	        	<strong>Department:</strong> <span th:text="${employee.department.name}"></span> <br>
+	        	<strong>Hire date:</strong> <span th:text="${employee.hireDate}"></span> <br>
+	        	<strong>Salary:</strong> <span th:text="${employee.salary}"></span>
+	        </p>
+	        <p class="card-text">
+	        	<strong>Email:</strong> <span th:text="${employee.email}"></span> <br>
+	        	<strong>Phone number:</strong> <span th:text="${employee.phoneNumber}"></span>
+	        </p>
+	        <p class="card-text">
+	        	<strong>Manager:</strong> 
+	        	<span th:text="${employee.manager.firstName + ' ' + employee.manager.lastName}"></span>
+	        </p>
+	        <p class="card-text">
+	        	<strong>Languages:</strong> 
+				<ul>
+					<li th:each="language : ${employee.languages}">
+						<span th:text="${language.name}"></span> 
+					</li>
+				</ul>
+	        </p>
+	        <a th:href="@{'/human-resource/moveup/' + ${employee.id}}" class="btn btn-success">Move Up</a>
+	        
 	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	      </div>
 	    </div>

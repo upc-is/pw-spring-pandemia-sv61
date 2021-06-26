@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head(~{::title})">
+	<title>HR - Info </title>
+</head>
+<body>
+ <header th:replace="layout/layout :: header"></header>
+ <main>
+ 
+ <section style="margin: 20px;">
+ 	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Home</a></li>
+	    <li class="breadcrumb-item"><a href="#">Human Resource</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Move Up</li>
+	  </ol>
+	</nav>
+ </section>
+ <section style="padding: 30px;">
+ 
+ 	<div class="card mb-5" style="max-width: 800px;">
+	  <div class="row g-0">
+	    <div class="col-md-5">
+	      <img th:src="@{/images/perfil.jpg}" alt="...">
+	    </div>
+	    <div class="col-md-7">
+	      <div class="card-body">
+	        <h5 class="card-title" th:text="${employeeMoveUp.firstName + ' ' + employeeMoveUp.lastName}">Card title</h5>
+	        <p class="card-text ">
+	        
+	        	<form th:action="@{/human-resource/save-moveup}" th:object="${employeeMoveUp}" method="post">
+	        		 <div class="mb-3 row ">
+					    <label for="department" class="col-sm-3 col-form-label">Department:</label>
+					    <div class="col-sm-9">
+					      	<select th:field="*{department}" class="form-select" aria-label="Default select example">
+							  <option th:each="department : ${departments}" 
+							  		  th:value="${department.id}"
+							  		  th:text="${department.name}">One</option>
+							</select>
+					    </div>
+					  </div>
+					  <div class="mb-3 row">
+					    <label for="job" class="col-sm-3 col-form-label">Job:</label>
+					    <div class="col-sm-9">
+					      	<select th:field="*{job}" class="form-select" aria-label="Default select example">
+							  <option th:each="job : ${jobs}" 
+							  		  th:value="${job.id}"
+							  		  th:text="${job.title}">One</option>
+							</select>
+					    </div>
+					  </div>
+					  <div class="mb-3 row">
+					    <label for="salary" class="col-sm-3 col-form-label">Salary:</label>
+					    <div class="col-sm-9">
+					      <input type="text" class="form-control" th:field="*{salary}">
+					    </div>
+					  </div>
+	        	
+	        		<button type="submit" class="btn btn-primary">Move Uping</button>
+	        		<a th:href="@{'/info/employee/' + ${employeeMoveUp.id}}" class="btn btn-danger">
+	        			<i class="fas fa-window-close"></i> Cancel
+	        		</a>
+	        	</form>
+	        </p>	        
+	        
+	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+ 
+ </section>
+ 	
+ 
+ </main>   
+ <footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -26,13 +26,13 @@
 	        <li class="nav-item">
 	          <a class="nav-link" aria-current="page" href="#">Home</a>
 	        </li>
-	        <li class="nav-item">
+	        <li class="nav-item" sec:authorize="hasRole('ROLE_MANAGER')">
 	          <a class="nav-link active" th:href="@{/regions}">Region</a>
 	        </li>
-	        <li class="nav-item">
+	        <li class="nav-item" sec:authorize="hasRole('ROLE_EMPLOYEE')">
 	          <a class="nav-link" href="#">Country</a>
 	        </li>
-	        <li class="nav-item dropdown">
+	        <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_EMPLOYEE')">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 	            Hiring
 	          </a>
@@ -43,7 +43,7 @@
 	            <li><a class="dropdown-item" href="#">Something else here</a></li>
 	          </ul>
 	        </li>
-	        <li class="nav-item dropdown">
+	        <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_MANAGER')">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 	            Masters
 	          </a>
@@ -60,20 +60,29 @@
 	      </ul>
 	      
 	      <form class="d-flex" th:action="@{/search/employees}" th:object="${employeeSearch}" method="post">
-	        <input class="form-control me-2" type="search" th:field="*{lastName}" placeholder="Search Employees" aria-label="Search">
-	        <button class="btn btn-warning" type="submit"><i class="fas fa-search"></i></button>
+	        <input class="form-control me-2" type="search" th:field="*{lastName}" placeholder="Search Employees" aria-label="Search"
+	        	sec:authorize="hasRole('ROLE_EMPLOYEE')">
+	        <input class="form-control me-2" type="search" th:field="*{lastName}" placeholder="Search Employees" aria-label="Search"
+	        	sec:authorize="hasRole('ROLE_MANAGER')" disabled >
+	        	
+	        <button class="btn btn-warning" type="submit" sec:authorize="hasRole('ROLE_EMPLOYEE')">
+	        	<i class="fas fa-search"></i>
+	        </button>
+	        <button class="btn btn-warning" type="submit" sec:authorize="hasRole('ROLE_MANAGER')" disabled>
+	        	<i class="fas fa-search"></i>
+	        </button>
 	      </form>
 	      	      
 	      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-	        <li class="nav-item">
+	        <li class="nav-item" sec:authorize="isAnonymous()">
 	          <a class="nav-link" aria-current="page" th:href="@{/login}">Sign in</a>
 	        </li>
-	        <li class="nav-item">
+	        <li class="nav-item" sec:authorize="isAnonymous()">
 	          <a class="nav-link" href="#">Sign up</a>
 	        </li>
-	        <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-	            Profile
+	        <li class="nav-item dropdown" sec:authorize="isAuthenticated()" style="margin-left:5px;">
+	          <a class="nav-link dropdown-toggle btn btn-outline-warning" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	            <i class="fas fa-user-circle"></i> <span sec:authentication="name">Profile</span>
 	          </a>
 	          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 	            <li><a class="dropdown-item" href="#">View Perfile</a></li>
